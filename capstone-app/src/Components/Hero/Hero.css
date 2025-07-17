@@ -1,0 +1,73 @@
+body {
+    font-family: 'Markazi Text';
+}
+
+.hero-section {
+    background: #495e57;
+    display: flex;
+    justify-content:left;
+    align-content: flex-start;
+    height: 100%;
+    width: 100%;
+    padding: 4em;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2em;
+    margin: 0 2em;
+    width: 60%;
+    margin-left: 0;
+}
+
+h1 {
+    color: #F4ce14;
+    font-size: 48px;
+    font-weight: 500;
+    word-wrap: break-word; 
+    margin: 0;
+}
+
+.hero-p1 {
+    color: white;
+    justify-content: flex-start;
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.hero-p2 {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    word-wrap: break-word;
+    margin: 0 0 1em;
+}
+
+.hero-btn {
+    border-radius: 16px;
+    border: 2px solid black;
+    margin: 0 0 1em;
+    padding: .6em;
+    background-color: #F4ce14;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.hero-btn:hover {
+    background: #ee9972;
+    transform: scale(1.02);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, .4);
+}
+
+/* .hero-img {
+    margin: 1em 0;
+    padding: 1em;
+    height: 400px;
+    width: 300px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+} */

@@ -1,16 +1,26 @@
 import './Hero.css';
+// import heroImg from '../../Assets/hero-img.jpg'
+import { useNavigate } from 'react-router-dom';
 
 function Hero() {
+  const navigate = useNavigate();
+
+  const reserveClick = () => {
+    navigate('/reservations');
+  }
     return (
         <section className="hero-section">
             <div className="hero-content">
-              <h1>Little Lemon</h1> <p>Chicago</p>
-              <p>Lorem ipsum filler text...</p>
-              <button>Reserve a table</button>
+              <h1>Little Lemon</h1> <p className="hero-p1">Chicago</p>
+              <p className='hero-p2'>We are a family owned Mediterranean restaurant, 
+                focused on traditional recipes served with a modern twist.</p>
+              <button className='hero-btn'>Reserve a table</button>
             </div>
-            <div className="hero-image">
-              <img src="hero-image-placeholder.png" alt="Little Lemon restaurant"></img>
-            </div>
+            {/* <div className="hero-image">
+              <img src={heroImg}
+              className='hero-img'
+              alt="Little Lemon restaurant"></img>
+            </div> */}
         </section>
     );
 }

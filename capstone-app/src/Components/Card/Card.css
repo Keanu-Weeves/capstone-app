@@ -1,0 +1,57 @@
+body {
+    font-family: '';
+}
+
+.specials-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2em;
+    line-height: 1.5;
+    border: 2px solid black;
+    border-radius: 16px;
+    height: auto;
+    max-width: 300px;
+    text-align: center;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, .4);
+    background: #fbdabb
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 16px 16px 0 0;
+}
+
+h3 {
+    
+}
+
+.price {
+    margin: 0;
+    font-size:16px;
+}
+
+.description {
+    margin: 6px;
+    font-size: 14px;
+}
+
+.delivery-btn {
+    padding: 10px;
+    margin-bottom: 1em;
+    border-radius: 8px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, .4);
+    cursor: pointer;
+    background: #495e57;
+    color:#edefee
+}
+
+.delivery-btn:hover {
+    background:#edefee;
+    color: black;
+    transition: .3s ease-in-out;
+}
