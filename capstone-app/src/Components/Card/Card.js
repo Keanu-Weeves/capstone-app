@@ -4,7 +4,7 @@ import './Card.css';
 function Card({ name, price, description, image }) {
     return (
         <article class="specials-card">
-                <img src={image} alt={name}></img>
+                <img src={image} alt={name} className="dish-img"></img>
                 <h3>{name}</h3>
                 <p className='price'>Price: ${price}</p>
                 <p className='description'>{description}</p>

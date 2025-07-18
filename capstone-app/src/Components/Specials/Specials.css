@@ -1,19 +1,48 @@
 .specials-section {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    background-color: #edefee;
+    text-align: center;
+    padding: 20px;
+    background-color: #fbdabb;
 }
 
-.specials-container {
+.carousel-container {
     display: flex;
-    flex-direction: column;
-    justify-content:center;
     align-items: center;
-    height: 100%;
-    width: 100%;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 600px;
+    position: relative;
 }
+
+.carousel-slide-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 0 10px;
+}
+
+.carousel-nav {
+    background-color: #495e57;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    margin: 0 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    transition: background-color .3s ease;
+}
+
+.carousel-nav:hover {
+    background-color: #edefee;
+    color: black;
+}
+
 
 h2 {
     text-align: center;
