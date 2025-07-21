@@ -1,7 +1,7 @@
 .specials-section {
     text-align: center;
     padding: 20px;
-    background-color: #fbdabb;
+    background-color: #edefee;
 }
 
 .carousel-container {
@@ -39,12 +39,12 @@
 }
 
 .carousel-nav:hover {
-    background-color: #edefee;
+    background-color: #fbdabb;
     color: black;
 }
 
 
-h2 {
+.specials-section h2 {
     text-align: center;
     font-size: 28px;
     font-style: italic;

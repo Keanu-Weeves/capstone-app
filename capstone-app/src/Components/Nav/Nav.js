@@ -1,27 +1,65 @@
-import React, { useState } from 'react';
+import React, {
+    useState,
+    useRef,
+    useEffect,
+    forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Logo from '../../Images/Logo.svg';
 import hamburger from '../../Assets/hamburger_icon.svg';
 import basket from '../../Assets/Basket.svg';
 import './Nav.css'
 
-function Nav() {
+
+
+const Nav = () => {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-    const [isCartOpen, setIsCartOpen] = useState(false);
+    const headerRef = useRef(null);
+    const [prevScrollY, setPrevScrollY] = useState(0);
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            const headerElement = headerRef.current;
+
+            if (!headerElement) {
+                return;
+            }
+
+            if (currentScrollY > prevScrollY && currentScrollY > 200) {
+                setIsVisible(false);
+            } else if (currentScrollY < prevScrollY) {
+                setIsVisible(true);
+            }
+            setPrevScrollY(currentScrollY);
+        };
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [prevScrollY]);
 
     const handleBasketClick = () => {
         navigate('/order');
         setIsMenuOpen(false);
-    }
+    };
+
+    const navStyle = {
+    transform: {isVisible} ? 'translateY(0)' : 'translateY(-200px)',
+    transitionProperty: "transform",
+    transitionDuration: ".3s",
+    transitionTimingFunction: "ease-in-out"
+    };
 
     return (
         <header>
-            <nav>
+            <nav style={navStyle}>
                 <button
                 className='basket-icon'
                 onClick={handleBasketClick}

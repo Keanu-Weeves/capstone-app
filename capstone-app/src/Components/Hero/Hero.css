@@ -27,7 +27,7 @@ h1 {
     color: #F4ce14;
     font-size: 48px;
     font-weight: 500;
-    word-wrap: break-word; 
+    word-wrap: break-word;
     margin: 0;
 }
 
@@ -62,12 +62,11 @@ h1 {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, .4);
 }
 
-/* .hero-img {
+.hero-img {
     margin: 1em 0;
-    padding: 1em;
     height: 400px;
     width: 300px;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-} */
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, .4);
+}

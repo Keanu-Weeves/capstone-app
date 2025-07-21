@@ -1,28 +1,70 @@
+import './Footer.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faXTwitter,
+  faInstagram,
+} from '@fortawesome/free-brands-svg-icons';
+
+const socials = [
+  {
+    id: 1,
+    icon: faFacebook,
+    url: 'https://www.facebook.com',
+    label: "Facebook"
+  },
+  {
+    id: 2,
+    icon: faXTwitter,
+    url: 'https://www.x.com',
+    label: "XTwitter"
+  },
+  {
+    id: 3,
+    icon: faInstagram,
+    url: "https://www.instagram.com",
+    label: "Instagram"
+  }
+]
+
 function Footer() {
     return (
         <footer>
-          <img src="logo-placeholder.png" alt="little lemon logo"></img>
-          <nav>
-            <h4>Doormat Navigation</h4>
-            <ul class="doormat-nav">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Menu/Order Online</a></li>
-              <li><a href="#">Reservations</a></li>
-              <li><a href="#">Login</a></li>
-            </ul>
-            <h4>Contact</h4>
-            <ul class="contact">
-              <li>Address</li>
-              <li>Phone</li>
-              <li>Email</li>
-            </ul>
-            <h4>Social Media</h4>
-            <ul>
-              <li>Facebook</li>
-              <li>X</li>
-              <li>IG</li>
-            </ul>
+          <nav className='footer-nav'>
+            <div className="quicklinks-container">
+              <h4>Quick Links</h4>
+              <ul className="doormat-nav-ul">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Menu/Order Online</a></li>
+                <li><a href="#">Reservations</a></li>
+                <li><a href="#">Login</a></li>
+              </ul>
+            </div>
+            <div className="contact-container">
+              <h4>Contact</h4>
+              <ul className="contact-nav-ul">
+                <li>123 Little Lemon Way</li>
+                <li>(123) 456-789</li>
+                <li>littlelemon@gmail.com</li>
+              </ul>
+            </div>
+            <div className="socials-container">
+              <h4>Follow Us!</h4>
+              <ul>
+                {socials.map((social) => (
+                  <a
+                  key={social.id}
+                  href={social.url}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label={social.label + " link"}
+                  >
+                    <FontAwesomeIcon className='navIcons' color="white" icon={social.icon} size="2x" />
+                  </a>
+                ))}
+              </ul>
+            </div>
           </nav>
         </footer>
     );

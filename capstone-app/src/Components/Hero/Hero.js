@@ -1,5 +1,5 @@
 import './Hero.css';
-// import heroImg from '../../Assets/hero-img.jpg'
+import heroImg from '../../Assets/hero-img.jpg'
 import { useNavigate } from 'react-router-dom';
 
 function Hero() {
@@ -16,11 +16,11 @@ function Hero() {
                 focused on traditional recipes served with a modern twist.</p>
               <button className='hero-btn'>Reserve a table</button>
             </div>
-            {/* <div className="hero-image">
+            <aside className="hero-image">
               <img src={heroImg}
               className='hero-img'
               alt="Little Lemon restaurant"></img>
-            </div> */}
+            </aside>
         </section>
     );
 }
