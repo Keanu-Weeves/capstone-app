@@ -9,6 +9,10 @@ body {
     box-sizing: inherit;
 }
 
+header {
+    background: #edefee;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -36,6 +40,7 @@ nav {
 .logo {
     height: 40px;
     width: auto;
+    margin-bottom: 6px;
 }
 
 .hamburger-menu {

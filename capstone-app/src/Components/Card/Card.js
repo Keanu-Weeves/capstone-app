@@ -1,9 +1,9 @@
 import React from 'react';
 import './Card.css';
 
-function Card({ name, price, description, image }) {
+function Card({ name, price, description, image, className }) {
     return (
-        <article class="specials-card">
+        <article className={`specials-card ${className || ''}`}>
                 <img src={image} alt={name} className="dish-img"></img>
                 <h3>{name}</h3>
                 <p className='price'>Price: ${price}</p>

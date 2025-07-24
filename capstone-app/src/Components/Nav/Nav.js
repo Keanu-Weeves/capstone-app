@@ -2,7 +2,7 @@ import React, {
     useState,
     useRef,
     useEffect,
-    forwardRef } from 'react';
+} from 'react';
 import { useNavigate } from 'react-router-dom'
 import Logo from '../../Images/Logo.svg';
 import hamburger from '../../Assets/hamburger_icon.svg';
@@ -15,12 +15,13 @@ const Nav = () => {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
     const headerRef = useRef(null);
     const [prevScrollY, setPrevScrollY] = useState(0);
     const [isVisible, setIsVisible] = useState(true);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -31,10 +32,14 @@ const Nav = () => {
                 return;
             }
 
-            if (currentScrollY > prevScrollY && currentScrollY > 200) {
+            if (currentScrollY > prevScrollY && currentScrollY > headerElement.offsetHeight) {
                 setIsVisible(false);
-            } else if (currentScrollY < prevScrollY) {
+            } else if (currentScrollY < prevScrollY || currentScrollY <= headerElement.offsetHeight) {
                 setIsVisible(true);
+            }
+
+            if (isMenuOpen) {
+                setIsMenuOpen(false);
             }
             setPrevScrollY(currentScrollY);
         };
@@ -43,7 +48,7 @@ const Nav = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [prevScrollY]);
+    }, [prevScrollY, isMenuOpen]);
 
     const handleBasketClick = () => {
         navigate('/order');
@@ -51,15 +56,17 @@ const Nav = () => {
     };
 
     const navStyle = {
-    transform: {isVisible} ? 'translateY(0)' : 'translateY(-200px)',
-    transitionProperty: "transform",
-    transitionDuration: ".3s",
-    transitionTimingFunction: "ease-in-out"
+    transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
+    transition: 'transform 0.3s ease-in-out',
+    position: 'fixed',
+    top: 0,
+    width: '100%',
+    zIndex: 1000,
     };
 
     return (
-        <header>
-            <nav style={navStyle}>
+        <header ref={headerRef} style={navStyle}>
+            <nav>
                 <button
                 className='basket-icon'
                 onClick={handleBasketClick}

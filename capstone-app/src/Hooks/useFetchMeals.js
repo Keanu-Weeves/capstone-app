@@ -22,6 +22,7 @@ const useFetchMeals = (category = 'Seafood', count = 3) => {
                     }
                 }
                 setData(meals);
+
             } catch (err) {
                 setError(err);
             } finally {

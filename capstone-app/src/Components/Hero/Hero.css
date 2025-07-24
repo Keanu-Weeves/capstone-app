@@ -10,6 +10,8 @@ body {
     height: 100%;
     width: 100%;
     padding: 4em;
+    overflow:hidden;
+    margin-top: 2em;
 }
 
 .hero-content {
@@ -64,8 +66,8 @@ h1 {
 
 .hero-img {
     margin: 1em 0;
-    height: 400px;
-    width: 300px;
+    height: 350px;
+    max-width: 100%;
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, .4);
