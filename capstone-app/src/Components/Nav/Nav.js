@@ -3,7 +3,7 @@ import React, {
     useRef,
     useEffect,
 } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom';
 import Logo from '../../Images/Logo.svg';
 import hamburger from '../../Assets/hamburger_icon.svg';
 import basket from '../../Assets/Basket.svg';
@@ -83,12 +83,12 @@ const Nav = () => {
                     <img src={hamburger} alt="Navigation Menu Icon" />
                 </button>
                 <ul id="mobile-nav-list" className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
-                    <li><a href='/home' onClick={toggleMenu}>Home</a></li>
-                    <li><a href='/about' onClick={toggleMenu}>About</a></li>
-                    <li><a href='/menu'>Menu</a></li>
-                    <li><a href='/order' onClick={toggleMenu}>Order Online</a></li>
-                    <li><a href='/reservations' onClick={toggleMenu}>Reservations</a></li>
-                    <li><a href='/login' onClick={toggleMenu}>Login</a></li>
+                    <li><Link to='/home' onClick={toggleMenu}>Home</Link></li>
+                    <li><Link to='/about' onClick={toggleMenu}>About</Link></li>
+                    <li><Link to='/menu'>Menu</Link></li>
+                    <li><Link to='/order' onClick={toggleMenu}>Order Online</Link></li>
+                    <li><Link to='/reservations' onClick={toggleMenu}>Reservations</Link></li>
+                    <li><Link to='/login' onClick={toggleMenu}>Login</Link></li>
                 </ul>
             </nav>
         </header>

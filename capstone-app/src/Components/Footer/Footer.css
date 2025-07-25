@@ -30,10 +30,13 @@ footer {
     flex-direction: column;
     margin-left: 0px;
     padding-left: 0;
+    padding-right: 2em;
+    border-right: 1px solid #495e57;
 }
 
 .doormat-nav-ul li {
     list-style-type: none;
+    padding-bottom: 4px;
 }
 
 .doormat-nav-ul li a {
@@ -58,6 +61,8 @@ footer {
     list-style-type: none;
     margin-top: 0;
     padding-left: 0;
+    padding-right: 2em;
+    border-right: 1px solid #495e57;
 }
 
 .contact-nav-ul li {
@@ -91,7 +96,7 @@ h4 {
     color:#495e57;
 }
 
-/* @media (max-width: 768px) {
+@media (max-width: 600px) {
     .footer-nav {
         flex-direction: column;
         align-items: center;
@@ -112,5 +117,6 @@ h4 {
 
     .doormat-nav-ul, .contact-nav-ul, .socials-container ul {
         align-items: center;
+        border: none;
     }
-} */
+}

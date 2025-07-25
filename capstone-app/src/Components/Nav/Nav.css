@@ -113,7 +113,7 @@ nav {
 }
 
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
 
     body {
         font-size: 20px;
@@ -163,4 +163,4 @@ nav {
     #mobile-nav-list li:hover{
         background-color:#333;
     }
-}
+} */
