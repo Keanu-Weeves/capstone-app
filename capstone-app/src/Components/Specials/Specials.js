@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Card from '../Card/Card.js';
 import useFetchMeals from '../../Hooks/useFetchMeals.js';
 import './Specials.css';
@@ -12,38 +12,47 @@ function Specials() {
   const intervalRef = useRef(null); // store interval ID
 
   //Navigation
-  const goToNextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % specials.length);
-  };
+  const goToNextSlide = useCallback(() => {
+    if (specials && specials.length > 0) {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % specials.length);
+    }
+  }, [specials]);
 
-  const gotToPrevSlide = () => {
+  const gotToPrevSlide = useCallback(() => {
+    if (specials && specials.length > 0) {
     setCurrentSlide((prevSlide) => (prevSlide - 1 + specials.length) % specials.length);
-  };
+    }
+  }, [specials]);
 
   //Autoplay
-  const startAutoplay = () => {
+  const startAutoplay = useCallback(() => {
     if (specials && specials.length > 1) {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
       intervalRef.current = setInterval(() => {
         goToNextSlide();
       }, AUTOPLAY_INTERVAL);
     }
-  };
+  }, [specials, goToNextSlide]);
 
-  const stopAutoplay = () => {
+  const stopAutoplay = useCallback(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-  };
+  }, []);
 
   //useEffect for autoplay and cleanup
 
   useEffect(() => {
-    startAutoplay();
+    if (specials && specials.length > 0) {
+      startAutoplay();
+    }
     return () => {
       stopAutoplay();
     };
-  }, [specials]);
+  }, [specials, startAutoplay, stopAutoplay]);
 
   useEffect(() => {
     const carouselElement = carouselRef.current;
@@ -57,7 +66,7 @@ function Specials() {
         carouselElement.removeEventListener('mouseleave', startAutoplay);
       }
     };
-  }, [specials]);
+  }, [startAutoplay, stopAutoplay]);
 
   if (loading) {
     return <section className="specials-section">
@@ -76,7 +85,6 @@ function Specials() {
   }
   //multiple cards
   const getVisibleSlides = () => {
-    if (!specials || specials.length === 0) return [];
     const numSpecials = specials.length;
     return specials.map((meal, index) => {
         let status = '';

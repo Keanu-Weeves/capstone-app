@@ -1,4 +1,3 @@
-import Nav from '../Components/Nav/Nav.js';
 import Hero from '../Components/Hero/Hero.js';
 import Specials from '../Components/Specials/Specials.js';
 import Testimonials from '../Components/Testimonials/Testimonials.js';

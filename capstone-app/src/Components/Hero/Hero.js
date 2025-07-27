@@ -14,7 +14,7 @@ function Hero() {
               <h1>Little Lemon</h1> <p className="hero-p1">Chicago</p>
               <p className='hero-p2'>We are a family owned Mediterranean restaurant, 
                 focused on traditional recipes served with a modern twist.</p>
-              <button className='hero-btn'>Reserve a table</button>
+              <button className='hero-btn' onClick={reserveClick}>Reserve a table</button>
             </div>
             <aside className="hero-image">
               <img src={heroImg}

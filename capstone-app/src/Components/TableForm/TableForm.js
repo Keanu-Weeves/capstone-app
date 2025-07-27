@@ -26,7 +26,6 @@ function TableForm() {
 
     const handleChange = (e) => {
         const { id, value, type, checked } = e.target;
-        console.log(`handleChange called: id='<span class="math-inline">\{id\}', value\='</span>{value}', type='${type}'`); // Log every change
 
         setFormData(prevData => {
             const newValue = type === 'checkbox' ? checked : value;
@@ -34,7 +33,7 @@ function TableForm() {
                 ...prevData,
                 [id]: newValue,
             };
-            console.log(`Updating ${id} to:`, newValue, 'New formData:', updatedData); // Log the update
+            console.log(`Updating ${id} to:`, newValue, 'New formData:', updatedData);
             return updatedData;
         });
     };
