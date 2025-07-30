@@ -21,6 +21,13 @@ function TableForm() {
     console.log('Initial formData state:', initialState);
     return initialState;
     });
+    const getFormattedDate = (date) => {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+    const today = getFormattedDate(new Date());
 
     const [showConfirmModal, setShowConfirmModal] = useState(false);
 
@@ -66,8 +73,10 @@ function TableForm() {
                     key={formData.resDate}
                     type="date"
                     id='resDate'
-                    required value={formData.resDate}
-                    onChange={handleChange} />
+                    required
+                    value={formData.resDate}
+                    onChange={handleChange}
+                    min={today} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="resTime">Time</label>
@@ -77,6 +86,8 @@ function TableForm() {
                     id='resTime'
                     required
                     value={formData.resTime}
+                    min="16:00"
+                    max="22:00"
                     onChange={handleChange} />
                 </div>
                 <div className='form-group'>
