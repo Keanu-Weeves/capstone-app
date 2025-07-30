@@ -92,9 +92,9 @@ nav {
 
 .nav-links li {
     padding: 1em;
-    text-align: center;
-    border-bottom: 1px solid #eee;
-    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid #afafaf;
+    width:100%;
     box-shadow: none;
     border-radius: 0;
     cursor: pointer;
@@ -113,54 +113,8 @@ nav {
 }
 
 
-/* @media (min-width: 1024px) {
-
-    body {
-        font-size: 20px;
+@media (min-width: 1024px) {
+    .nav-links.open {
+        transform: translateX(50%);
     }
-
-    .hamburger-menu {
-        display: none;
-    }
-
-    nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding: 1em 2em;
-        height: auto;
-    }
-
-    .logo {
-        height: 50px;
-    }
-
-    .nav-links {
-        display: flex;
-        flex-direction: row;
-        position: static;
-        width: auto;
-        height: auto;
-        background: none;
-        box-shadow: none;
-        transform: translateX(0);
-        overflow-y: visible;
-    }
-
-    .nav-links li {
-        margin: 0 1em;
-        padding: .5em;
-        border-radius: 16px;
-        box-shadow: 4px 4px 6px rgba(0, 0, 0, .5);
-        border-bottom: none;
-    }
-
-    .nav-links a {
-        color: black;
-        font-size: 1em;
-        padding: 0;
-    }
-
-    #mobile-nav-list li:hover{
-        background-color:#333;
-    }
-} */
+}

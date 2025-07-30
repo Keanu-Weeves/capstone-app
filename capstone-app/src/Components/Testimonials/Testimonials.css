@@ -51,3 +51,28 @@
 .testimonial-card:hover {
     box-shadow: 0 0px 8px rgba(244, 206, 20);
 }
+
+@media (min-width: 1024px) {
+    .testimonials-section {
+        background-color: #edefee;
+    }
+
+    .testimonial-card {
+        background:#495e57;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, .25);
+    }
+
+    .testimonial-card h3 {
+        color: #edefee;
+    }
+
+    .testimonial-card blockquote {
+        font-style: italic;
+        color: #edefee;
+    }
+
+    .testimonial-img {
+        
+        border: 2px solid white;
+    }
+}

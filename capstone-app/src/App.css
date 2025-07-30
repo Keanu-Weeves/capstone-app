@@ -19,6 +19,20 @@ main {
   box-sizing: border-box;
 }
 
+.coming-soon-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  margin: 2em;
+  background-color: #495e57;
+  color: #edefee;
+  font-weight: bold;
+  border-radius: 16px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, .5);
+  font-size: 2em;
+  width: auto;
+}
 
 
 

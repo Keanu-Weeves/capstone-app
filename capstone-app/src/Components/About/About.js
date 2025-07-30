@@ -14,8 +14,10 @@ function About() {
                     We feature a locally-sourced menu with daily specials.</p>
             </div>
             <aside className='about-img-container'>
-              <img src={marioAdrianImg} alt='Mario and Adrian' className="about-img1" />
-              <img src={restaurantfoodImg} alt='tasty appetizers' className='about-img2' />
+              <img src={marioAdrianImg} alt='Mario and Adrian' 
+              className="about-img1" />
+              <img src={restaurantfoodImg} alt='tasty appetizers' 
+              className='about-img2' />
             </aside>
         </section>
     );

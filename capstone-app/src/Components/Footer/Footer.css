@@ -25,6 +25,15 @@ footer {
     max-width: 1200px;
 }
 
+.quicklinks-container h4 {
+    text-align: center;
+}
+
+.quicklinks-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .doormat-nav-ul {
     display: flex;
     flex-direction: column;

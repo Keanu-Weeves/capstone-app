@@ -16,7 +16,7 @@ function Hero() {
                 focused on traditional recipes served with a modern twist.</p>
               <button className='hero-btn' onClick={reserveClick}>Reserve a table</button>
             </div>
-            <aside className="hero-image">
+            <aside className="hero-img-wrapper">
               <img src={heroImg}
               className='hero-img'
               alt="Little Lemon restaurant"></img>

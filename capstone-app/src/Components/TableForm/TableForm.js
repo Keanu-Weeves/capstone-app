@@ -135,10 +135,6 @@ function TableForm() {
                 </div>
                 <button type="submit" className="submit-button">Review & Reserve</button>
             </form>
-        <div className="form-images">
-            <img src="placeholder.png" alt="little lemon" />
-            <img src="anotherplaceholder.png" alt="little lemon" />
-        </div>
         {showConfirmModal && (
             <ConfirmationModal
                 formData={formData}

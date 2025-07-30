@@ -1,8 +1,9 @@
 import React from 'react';
-import Nav from '../Components/Nav/Nav.js'
+import Nav from '../Components/Nav/Nav.js';
 import Footer from '../Components/Footer/Footer.js';
 
-function Menu() {
+
+function Login() {
     return (
         <>
             <Nav />
@@ -12,4 +13,4 @@ function Menu() {
     );
 }
 
-export default Menu;
+export default Login;
