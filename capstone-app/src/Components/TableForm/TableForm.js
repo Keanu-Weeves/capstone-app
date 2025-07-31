@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ConfirmationModal from './ConfirmationModal.js';
 import './TableForm.css';
+import { fetchAPI, submitAPI } from '../../Utils/api.js';
 
 function TableForm() {
-    console.log('TableForm renders');
+    const getFormattedDate = (date) => {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+    };
+
+    const creatDateAtMidnight = (dateString) => {
+        const date = new Date(dateString);
+        date.setHours(0, 0, 0, 0);
+        return date;
+    };
+
+    const todayString = getFormattedDate(new Date());
+
+    // console.log('TableForm renders');
     const [formData, setFormData] = useState(() => {
         const initialState = {
         resDate: '',
@@ -18,18 +34,50 @@ function TableForm() {
         comments: '',
         subscribe: false,
     };
-    console.log('Initial formData state:', initialState);
+    // console.log('Initial formData state:', initialState);
     return initialState;
     });
-    const getFormattedDate = (date) => {
-        const year = date.getFullYear();
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    }
-    const today = getFormattedDate(new Date());
 
+    const [availableTimes, setAvailableTimes] = useState([]);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
+
+
+
+
+    useEffect(() => {
+        const initialDateForApi = creatDateAtMidnight(todayString);
+        const initialTimes = fetchAPI(initialDateForApi);
+        console.log("Initial times fetched for today (standardized):", initialTimes);
+        setAvailableTimes(initialTimes);
+
+        setFormData(prevData => {
+            if (!prevData.resDate) {
+                return {
+                    ...prevData,
+                    resDate: todayString,
+                    resTime: initialTimes[0] || ''
+                };
+            }
+            return prevData;
+        });
+    }, [todayString]);
+
+    useEffect(() => {
+        if (formData.resDate) {
+            const selectedDateForApi = creatDateAtMidnight(formData.resDate);
+            const timesForSelectedDate = fetchAPI(selectedDateForApi);
+            setAvailableTimes(timesForSelectedDate);
+            console.log("Times fetched for selected date (standardized):", formData.resDate, timesForSelectedDate);
+            if (!timesForSelectedDate.includes(formData.resTime)) {
+                setFormData(prevData => ({
+                    ...prevData,
+                    resTime: timesForSelectedDate[0] || ''
+                }));
+            }
+        }
+    }, [formData.resDate, formData.resTime])
+
+
 
     const handleChange = (e) => {
         const { id, value, type, checked } = e.target;
@@ -40,29 +88,47 @@ function TableForm() {
                 ...prevData,
                 [id]: newValue,
             };
-            console.log(`Updating ${id} to:`, newValue, 'New formData:', updatedData);
+            // console.log(`Updating ${id} to:`, newValue, 'New formData:', updatedData);
             return updatedData;
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form Submitted:', formData)
-        console.log('Showing modal:', showConfirmModal)
-        setShowConfirmModal(true);
+        // console.log('Form Submitted:', formData)
+        // console.log('Showing modal:', showConfirmModal)
+        const submissionResult = await submitAPI(formData);
+
+        if (submissionResult) {
+            setShowConfirmModal(true);
+        } else {
+            alert('Reservation failed. Please try again or contact us directly.')
+        }
     };
 
     const handleConfirmReservation = () => {
-        console.log('Reservation Confirmed and Mock Payment Processed:', formData);
-        alert('Reservation successfully confirmed! Thank you. ');
         setShowConfirmModal(false);
+        setFormData({
+            resDate: todayString,
+            resTime: availableTimes[0] || '',
+            guests: '4',
+            occasion: 'birthday',
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            seatingPref: 'indoor',
+            comments: '',
+            subscribe: false,
+        });
     }
+    // console.log('Current state of formData (after render):', formData);
 
-    const handleCancelReservation= () => {
+    const handleCancelReservation = () => {
         console.log('Reservation Cancelled');
-        setShowConfirmModal(false);
+        setShowConfirmModal(false)
     }
-    console.log('Current state of formData (after render):', formData);
+    console.log("Current availableTimes state:", availableTimes);
     return(
         <section className="form-section">
             <h2>Your Reservation Details</h2>
@@ -76,19 +142,25 @@ function TableForm() {
                     required
                     value={formData.resDate}
                     onChange={handleChange}
-                    min={today} />
+                    min={todayString} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="resTime">Time</label>
-                    <input
+                    <select
                     key={formData.resTime}
                     type="time"
                     id='resTime'
                     required
                     value={formData.resTime}
-                    min="16:00"
-                    max="22:00"
-                    onChange={handleChange} />
+                    onChange={handleChange}>
+                        {availableTimes.length > 0 ? (
+                            availableTimes.map(time => (
+                            <option key={time} value={time}>{time}</option>
+                        ))
+                    ) : (
+                        <option value="">No times available for this day</option>
+                    )}
+                    </select>
                 </div>
                 <div className='form-group'>
                     <label htmlFor='guests'>Number of Guests</label>
