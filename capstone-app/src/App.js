@@ -6,7 +6,7 @@ import Reservations from './Pages/Reservations.js';
 import Menupage from './Pages/Menupage.js'
 import Aboutpage from './Pages/Aboutpage.js';
 import Orderpage from './Pages/Orderpage.js';
-import Login from './Pages/Login.js';
+import LoginPage from './Pages/LoginPage.js';
 
 // Assume you have an OrderPage component
 // import OrderPage from './components/OrderPage';
@@ -23,7 +23,7 @@ function App() {
           <Route path="/menu" element={<Menupage />} />
           <Route path="/order" element={<Orderpage />} />
           <Route path="/reservations" element={<Reservations />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </main>
     </>

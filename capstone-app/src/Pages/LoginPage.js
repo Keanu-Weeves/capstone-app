@@ -1,16 +1,18 @@
 import React from 'react';
 import Nav from '../Components/Nav/Nav.js';
 import Footer from '../Components/Footer/Footer.js';
+import Login from '../Components/Login/Login.js';
 
 
-function Login() {
+function LoginPage() {
     return (
         <>
             <Nav />
-            <div className='coming-soon-card'>Coming Soon!</div>
+            <Login />
+            {/* <div className='coming-soon-card'>Coming Soon!</div> */}
             <Footer />
         </>
     );
 }
 
-export default Login;
+export default LoginPage;
