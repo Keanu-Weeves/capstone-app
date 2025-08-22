@@ -1,3 +1,7 @@
+body {
+    width: 100%;
+}
+
 .login-section {
     position: relative;
     display: flex;
@@ -9,7 +13,7 @@
 
 .animation-container {
     z-index: 0;
-    width: 90%;
+    width: 100%;
     max-width: 750px;
     position: absolute;
     background: #edefee;
