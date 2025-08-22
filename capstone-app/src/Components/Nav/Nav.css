@@ -33,6 +33,11 @@ nav {
     z-index: 110;
 }
 
+.basket-icon img {
+    width: 40px;
+    height: auto;
+}
+
 .basket-icon:hover {
     transform: scale(1.03);
 }

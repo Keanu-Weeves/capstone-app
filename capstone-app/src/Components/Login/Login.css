@@ -1,7 +1,3 @@
-body {
-    width: 100%;
-}
-
 .login-section {
     position: relative;
     display: flex;
@@ -9,16 +5,22 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    max-width: 100%;
+}
+
+.animation-wrapper {
+    z-index: 0;
+    width: 90%;
+    max-width: 750px;
+    position: absolute;
+    overflow-x: hidden;
+    aspect-ratio: 1 / 1;
 }
 
 .animation-container {
-    z-index: 0;
     width: 100%;
-    max-width: 750px;
-    position: absolute;
+    height: 100%;
     background: #edefee;
-    padding: 0;
-    aspect-ratio: 1 / 1;
     border-radius: 50%;
     border-top: solid 6px #ee9972;
     border-left: solid 6px #F4ce14;
@@ -138,7 +140,7 @@ form {
 }
 
 @media (min-width: 768px) {
-    .animation-container {
+    .animation-wrapper {
         width: 750px;
     }
     .login-container {
