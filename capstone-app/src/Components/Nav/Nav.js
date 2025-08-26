@@ -3,7 +3,7 @@ import React, {
     useRef,
     useEffect,
 } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from '../../Images/Logo.svg';
 import hamburger from '../../Assets/hamburger_icon.svg';
 import basket from '../../Assets/Basket.svg';
@@ -11,17 +11,18 @@ import './Nav.css'
 
 
 
-const Nav = () => {
-    const navigate = useNavigate();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+const Nav = ({
+    isMenuOpen, toggleMenu, onCloseMenu,
+    isCartOpen, toggleCart, onCloseCart }) => {
+    const location = useLocation();
     const headerRef = useRef(null);
     const [prevScrollY, setPrevScrollY] = useState(0);
     const [isVisible, setIsVisible] = useState(true);
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    useEffect(() => {
+        onCloseMenu();
+        onCloseCart();
+    }, [location.pathname, onCloseMenu, onCloseCart])
 
     useEffect(() => {
         const handleScroll = () => {
@@ -37,10 +38,6 @@ const Nav = () => {
             } else if (currentScrollY < prevScrollY || currentScrollY <= headerElement.offsetHeight) {
                 setIsVisible(true);
             }
-
-            if (isMenuOpen) {
-                setIsMenuOpen(false);
-            }
             setPrevScrollY(currentScrollY);
         };
         window.addEventListener('scroll', handleScroll);
@@ -48,12 +45,7 @@ const Nav = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [prevScrollY, isMenuOpen]);
-
-    const handleBasketClick = () => {
-        navigate('/order');
-        setIsMenuOpen(false);
-    };
+    }, [prevScrollY]);
 
     const navStyle = {
     transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
@@ -69,7 +61,7 @@ const Nav = () => {
             <nav>
                 <button
                 className='basket-icon'
-                onClick={handleBasketClick}
+                onClick={toggleCart}
                 >
                     <img src={basket} alt='Cart Items' />
                 </button>
@@ -83,14 +75,16 @@ const Nav = () => {
                     <img src={hamburger} alt="Navigation Menu Icon" />
                 </button>
                 <ul id="mobile-nav-list" className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
-                    <li><Link to='/home' onClick={toggleMenu}>Home</Link></li>
-                    <li><Link to='/about' onClick={toggleMenu}>About</Link></li>
-                    <li><Link to='/menu'>Menu</Link></li>
-                    <li><Link to='/order' onClick={toggleMenu}>Order Online</Link></li>
-                    <li><Link to='/reservations' onClick={toggleMenu}>Reservations</Link></li>
-                    <li><Link to='/login' onClick={toggleMenu}>Login</Link></li>
+                    <li><Link to='/home' onClick={onCloseMenu}>Home</Link></li>
+                    <li><Link to='/about' onClick={onCloseMenu}>About</Link></li>
+                    <li><Link to='/menu' onClick={onCloseMenu}>Menu</Link></li>
+                    <li><Link to='/order' onClick={onCloseMenu}>Order Online</Link></li>
+                    <li><Link to='/reservations' onClick={onCloseMenu}>Reservations</Link></li>
+                    <li><Link to='/login' onClick={onCloseMenu}>Login</Link></li>
                 </ul>
             </nav>
+            <div className={`nav-overlay ${isMenuOpen ? 'open' : ''}`} onClick={onCloseMenu} />
+
         </header>
     );
 }
