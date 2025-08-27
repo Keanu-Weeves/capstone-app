@@ -7,9 +7,9 @@ import useFetchCategoryMeals from '../../Hooks/useFetchCategoryMeals.js';
 import Card from '../Card/Card.js';
 
 function Menu() {
-    const { data: categories, loading: categoriesLoading, error: categoriesError } = useFetchCategories()
+    const { data: categories, loading: categoriesLoading } = useFetchCategories()
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const { data: meals, loading: mealsLoading, error: mealsError } = useFetchCategoryMeals(selectedCategory);
+    const { data: meals, loading: mealsLoading } = useFetchCategoryMeals(selectedCategory);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalMeal, setModalMeal] = useState(null);
 
