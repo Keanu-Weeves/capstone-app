@@ -13,14 +13,24 @@ export default function CartDrawer({ isCartOpen, onCloseCart }) {
         0
     );
 
+    const currency = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    });
+
     return (
         <>
             <div className={`cart-overlay ${isCartOpen ? "open" : ""}`}
             onClick={onCloseCart}
+            aria-hidden="true"
             />
-            <aside className={`cart-drawer ${isCartOpen ? "open" : ""}`}>
+            <aside className={`cart-drawer ${isCartOpen ? "open" : ""}`}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cart-title"
+            >
                 <header className="cart-header">
-                    <h2>Your Cart</h2>
+                    <h2 id="cart-title">Your Cart</h2>
                     <button className="cart-close" onClick={onCloseCart}>
                         ✕
                     </button>
@@ -33,7 +43,7 @@ export default function CartDrawer({ isCartOpen, onCloseCart }) {
                                 <strong>{item.name}</strong>
                                 <div className="cart-qty">Qty: {item.quantity}</div>
                             </div>
-                            <span>${(item.price * item.quantiy).toFixed(2)}</span>
+                            <span>{currency.format(item.price * item.quantity)}</span>
                         </li>
                     ))}
                 </ul>
@@ -41,7 +51,7 @@ export default function CartDrawer({ isCartOpen, onCloseCart }) {
                 <footer className="cart-footer">
                     <div className="cart-subtotal">
                         <span>Subtotal:</span>
-                        <strong>${subtotal.toFixed(2)}</strong>
+                        <strong>{currency.format(subtotal)}</strong>
                     </div>
                     <button className="checkout-btn">Checkout</button>
                 </footer>
