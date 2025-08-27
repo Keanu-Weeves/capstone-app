@@ -7,7 +7,8 @@ const mockItems = [
     { id: 3, name: "Tiramisu", price: 6.0, quantity: 1 },
 ];
 
-export default function CartDrawer({ isCartOpen, onCloseCart }) {
+export default function CartDrawer({ isCartOpen,
+     onCloseCart, cartItems, increaseQty, decreaseQty }) {
     const subtotal = mockItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0
@@ -37,15 +38,23 @@ export default function CartDrawer({ isCartOpen, onCloseCart }) {
                 </header>
 
                 <ul className="cart-items">
-                    {mockItems.map((item) => (
-                        <li key={item.id} className="cart-item">
-                            <div>
-                                <strong>{item.name}</strong>
-                                <div className="cart-qty">Qty: {item.quantity}</div>
-                            </div>
-                            <span>{currency.format(item.price * item.quantity)}</span>
-                        </li>
-                    ))}
+                    {cartItems.length === 0 ? (
+                        <p>No items yet...</p>
+                    ) : (
+                        cartItems.map((item) => (
+                            <li key={item.id} className="cart-item">
+                                <div className="cart-item-info">
+                                    <strong>{item.name}</strong>
+                                    <div className="cart-qty-controls">
+                                        <button onClick={() => decreaseQty(item.id)}>-</button>
+                                        <span>{item.quantity}</span>
+                                        <button onClick={() => increaseQty(item.id)}>+</button>
+                                    </div>
+                                </div>
+                                <span>${(item.price * item.quantity).toFixed(2)}</span>
+                            </li>
+                        ))
+                    )}
                 </ul>
 
                 <footer className="cart-footer">

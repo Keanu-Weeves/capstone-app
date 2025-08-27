@@ -16,6 +16,49 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (meal) => {
+    setCartItems((prev) => {
+      const existing = prev.find((item) => item.id === meal.idMeal);
+      if (existing) {
+        return prev.map((item) =>
+          item.id === meal.idMeal
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [
+          ...prev,
+          {
+            id: meal.idMeal,
+            name: meal.strMeal,
+            price: (Math.random() * 25).toFixed(2),
+            quantity: 1,
+            image: meal.strMealThumb,
+          },
+        ];
+      }
+    });
+    setIsCartOpen(true);
+  };
+
+  const increaseQty = (id) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decreaseQty = (id) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+      ).filter((item) => item.quantity > 0)
+    );
+  };
+
   const toggleCart = useCallback(() => {
     setIsCartOpen(prev => {
       if (!prev) setIsMenuOpen(false);
@@ -28,7 +71,7 @@ function App() {
   }, []);
 
   const toggleMenu = useCallback(() => {
-    setIsMenuOpen(prev => {
+    setIsMenuOpen((prev) => {
       if(!prev) setIsCartOpen(false);
       return !prev;
     });
@@ -39,14 +82,22 @@ function App() {
   }, []);
   return (
     <>
-      <Nav toggleMenu={toggleMenu}
+      <Nav
+       toggleMenu={toggleMenu}
        isMenuOpen={isMenuOpen}
        onCloseMenu={onCloseMenu}
        toggleCart={toggleCart}
        isCartOpen={isCartOpen}
        onCloseCart={onCloseCart}
       />
-      <CartDrawer isCartOpen={isCartOpen} onCloseCart={onCloseCart} />
+      <CartDrawer
+       isCartOpen={isCartOpen}
+       onCloseCart={onCloseCart}
+       cartItems={cartItems}
+       addToCart={addToCart}
+       increaseQty={increaseQty}
+       decreaseQty={decreaseQty}
+      />
       <main>
         <Routes>
           <Route path="/" element={<Homepage />} />
