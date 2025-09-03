@@ -35,6 +35,8 @@ const Nav = ({
 
             if (currentScrollY > prevScrollY && currentScrollY > headerElement.offsetHeight) {
                 setIsVisible(false);
+                if (isMenuOpen) onCloseMenu();
+                if (isCartOpen) onCloseCart();
             } else if (currentScrollY < prevScrollY || currentScrollY <= headerElement.offsetHeight) {
                 setIsVisible(true);
             }
@@ -45,7 +47,7 @@ const Nav = ({
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [prevScrollY]);
+    }, [prevScrollY, isMenuOpen, isCartOpen, onCloseMenu, onCloseCart]);
 
     const navStyle = {
     transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',

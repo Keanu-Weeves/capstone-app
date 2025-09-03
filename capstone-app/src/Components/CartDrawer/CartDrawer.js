@@ -1,16 +1,17 @@
 import React from 'react';
 import "./CartDrawer.css";
 
-const mockItems = [
-    { id: 1, name: "Margherita Pizza", price: 12.99, quantity: 1 },
-    { id: 2, name: "Caesar Salad", price: 8.5, quantity: 2 },
-    { id: 3, name: "Tiramisu", price: 6.0, quantity: 1 },
-];
+// const mockItems = [
+//     { id: 1, name: "Margherita Pizza", price: 12.99, quantity: 1 },
+//     { id: 2, name: "Caesar Salad", price: 8.5, quantity: 2 },
+//     { id: 3, name: "Tiramisu", price: 6.0, quantity: 1 },
+// ];
 
 export default function CartDrawer({ isCartOpen,
      onCloseCart, cartItems, increaseQty, decreaseQty }) {
-    const subtotal = mockItems.reduce(
-        (sum, item) => sum + item.price * item.quantity,
+
+    const subtotal = cartItems.reduce(
+        (sum, item) => sum + (Number(item.price) || 0) * item.quantity,
         0
     );
 
@@ -39,7 +40,7 @@ export default function CartDrawer({ isCartOpen,
 
                 <ul className="cart-items">
                     {cartItems.length === 0 ? (
-                        <p>No items yet...</p>
+                        <li className="cart-empty">Your cart is empty</li>
                     ) : (
                         cartItems.map((item) => (
                             <li key={item.id} className="cart-item">
@@ -51,7 +52,7 @@ export default function CartDrawer({ isCartOpen,
                                         <button onClick={() => increaseQty(item.id)}>+</button>
                                     </div>
                                 </div>
-                                <span>${(item.price * item.quantity).toFixed(2)}</span>
+                                <span>{currency.format((Number(item.price) || 0) * item.quantity)}</span>
                             </li>
                         ))
                     )}
@@ -59,8 +60,8 @@ export default function CartDrawer({ isCartOpen,
 
                 <footer className="cart-footer">
                     <div className="cart-subtotal">
-                        <span>Subtotal:</span>
-                        <strong>{currency.format(subtotal)}</strong>
+                        <span>Subtotal: </span>
+                        <strong> {currency.format(subtotal)}</strong>
                     </div>
                     <button className="checkout-btn">Checkout</button>
                 </footer>

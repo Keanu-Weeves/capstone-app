@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Card from '../Card/Card.js';
 import useFetchMeals from '../../Hooks/useFetchMeals.js';
 import './Specials.css';
+import { generatePriceFromId } from '../../Utils/pricing.js';
+import '../Menu/Menu.js';
 
-const AUTOPLAY_INTERVAL = 5000;
+const AUTOPLAY_INTERVAL = 4000;
 
-function Specials() {
+function Specials({ addToCart }) {
   const { data: specials, loading, error } = useFetchMeals('Dessert', 6);
   const [currentSlide, setCurrentSlide] = useState(0);
   const carouselRef = useRef(null); // carousel container managing hover
@@ -122,17 +124,11 @@ const allCardsWithStatus = getVisibleSlides();
             <Card
               key={meal.idMeal}
               name={meal.strMeal}
-              price={(Math.random() * 25).toFixed(2)}
-              description={
-                meal.strIngredient1 +
-                (meal.strIngredient2 ? ', ' + meal.strIngredient2 : '') +
-                (meal.strIngredient3 ? ', ' + meal.strIngredient3 : '') +
-                (meal.strIngredient4 ? ', ' + meal.strIngredient4 : '') +
-                (meal.strIngredient5 ? ', ' + meal.strIngredient5 : '') +
-                (meal.strIngredient6 ? ', ' + meal.strIngredient6 : '')
-              }
+              description="A delicious meal made with love."
               image={meal.strMealThumb}
+              price={generatePriceFromId(meal.idMeal)}
               className={`carousel-card ${meal.status}`}
+              onAddToCart={addToCart}
             />
           ))}
         </div>

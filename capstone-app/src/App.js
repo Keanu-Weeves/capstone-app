@@ -10,6 +10,7 @@ import Orderpage from './Pages/Orderpage.js';
 import LoginPage from './Pages/LoginPage.js';
 import Footer from './Components/Footer/Footer.js';
 import CartDrawer from './Components/CartDrawer/CartDrawer.js';
+import { generatePriceFromId } from './Utils/pricing.js';
 
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
           {
             id: meal.idMeal,
             name: meal.strMeal,
-            price: (Math.random() * 25).toFixed(2),
+            price: parseFloat(generatePriceFromId(meal.idMeal)),
             quantity: 1,
             image: meal.strMealThumb,
           },
@@ -103,8 +104,8 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/home" element={<Homepage />} />
           <Route path="/about" element={<Aboutpage />} />
-          <Route path="/menu" element={<Menupage />} />
-          <Route path="/order" element={<Orderpage />} />
+          <Route path="/menu" element={<Menupage addToCart={addToCart} />} />
+          <Route path="/order" element={<Orderpage addToCart={addToCart} />} />
           <Route path="/reservations" element={<Reservations />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>

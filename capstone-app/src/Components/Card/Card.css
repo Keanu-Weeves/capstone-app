@@ -1,18 +1,22 @@
 
 .specials-card {
-    width: 300px;
-    max-width: 100%;
-    min-height: 400px;
+    width: 100%;
+    max-width: 320px;
+    min-height: 420px;
     border-radius: 16px;
     padding: 20px;
-    line-height: 1.25em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, .4);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, .15);
     background: #edefee;
     text-align: center;
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.3s ease, box-shadow .3s ease;
+}
+
+.specials-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .25);
 }
 
 
@@ -22,50 +26,47 @@
     width: 100%;
     object-fit: cover;
     margin-bottom: 15px;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid #495e57
 }
 
-h3 {
-    margin-top: 0;
-    margin-bottom: 5px;
+.specials-card h3 {
+    margin: 0 0 5px 0;
     color: #495e57;
-    font-size: 24px;
+    font-size: 1.4rem;
+    font-weight: 600;
 }
 
 .price {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: #333333;
+    margin: 10px 0;
+    font-size: 1.1rem;
+    color: #333;
     font-weight: bold;
 }
 
 .description {
     margin: 6px 0 15px 0;
-    font-size: 15px;
-    color: #333333;
+    font-size: .95rem;
+    color: #555;
     flex-grow: 1;
 }
 
-.delivery-btn {
+.add-to-cart-btn {
     padding: 12px 25px;
-    margin-top: auto;
-    margin-bottom: 0;
     border-radius: 8px;
     border: none;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, .4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
     cursor: pointer;
     background: #f4ce14;
     color:#495e57;
-    font-weight: bold;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 1rem;
     transition: all .3s ease-in-out;
 }
 
-.delivery-btn:hover {
+.add-to-cart-btn:hover {
     background:#fbdabb;
     color: black;
     transform: translateY(-2px);
-    box-shadow: 4px 6px 12px rgba(0, 0, 0, .5);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, .35);
 }

@@ -11,6 +11,7 @@ body {
 
 header {
     background: #edefee;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
 }
 
 nav {
@@ -18,9 +19,9 @@ nav {
     justify-content: space-between;
     align-items: center;
     margin-top: .5em;
-    padding: 1em;
+    padding: .75em 1em;
     position: relative;
-    height: 60px;
+    height: 64px;
     z-index: 110;
     background: #edefee;
 }
@@ -33,9 +34,11 @@ nav {
     z-index: 110;
 }
 
-.basket-icon img {
-    width: 40px;
-    height: auto;
+.basket-icon img,
+.hamburger-menu img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
 }
 
 .basket-icon:hover {
@@ -57,10 +60,6 @@ nav {
     fill: #495e57;
 }
 
-.hamburger-menu img {
-    height: 20px;
-    width: 25px;
-}
 
 .hamburger-menu img:hover {
     transform: scale(1.1);
@@ -121,21 +120,6 @@ nav {
     padding: 0;
 }
 
-/* .nav-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, .2);
-    z-index: 80;
-    opacity: 0;
-    animation: fadeIn .35s forwards;
-}
-.nav-overlay.open {
-    opacity: 1;
-    pointer-events: auto;
-} */
 
 .nav-overlay {
     position: fixed;
@@ -158,22 +142,29 @@ nav {
 @media (min-width: 1024px) {
 
     .nav-links {
-        position: static;
-        flex-direction: row;
-        height: auto;
-        width: auto;
-        transform: translateX(0);
-        background: transparent;
-        box-shadow: none;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
     }
     .nav-links li{
         border: none;
-        padding: 0 1em;
+        padding: .5rem;
     }
-    .hamburger-menu {
-        display: none;
+    .nav-links li:first-child {
+        margin-top: 1em;
     }
-    /* .nav-links.open {
-        transform: translateX(50%);
-    } */
+    .nav-links a {
+        font-size: 1.25rem;
+        color: #495e57;
+        font-weight: 500;
+        transition: color .2s ease;
+    }
+
+    .nav-links li:hover {
+        color: #ee9972;
+    }
+
+    .nav-links a:hover {
+        color: #edefee;
+    }
 }
